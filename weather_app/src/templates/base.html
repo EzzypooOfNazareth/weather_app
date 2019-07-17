@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,600,800&display=swap" rel="stylesheet">
+    <title>Get the Weather with Ezra</title>
+  </head>
+
+<!-- block start beginning -->
+{% block image %}
+        {% if 'clear' in city_weather.description %}
+                <div class="image1">
+        {% elif 'sun' in city_weather.description %}
+                <div class="image1">
+        {% elif 'cloud' in city_weather.description %}
+                <div class="image2">
+        {% elif 'mist' in city_weather.description %}
+                <div class="image2">
+        {% elif 'rain' in city_weather.description %}
+                <div class="image3">
+        {% elif 'haze' in city_weather.description %}
+                <div class="image3">
+        {% elif 'thunder' in city_weather.description %}
+                <div class="image4">
+        {% else %}
+                <div class="image5">
+        {% endif %}
+{% endblock %}
+<!-- block end beginning -->
+
+  <body>
+
+    <header>
+      <div class="header_container">
+
+        <div class="section_left">
+          <div class="text_container">
+            <h1>Ezra's Weather App</h1>
+          </div>
+        </div>
+
+        <div class="section_right">
+          <form method="POST">
+          {% csrf_token %}
+                <div class="search_container">
+                  {{ form.name }}
+                  <button class="buttonInput" type="submit">Enter</button>
+                </div>
+              </div>
+          </form>
+      </div>
+    </header>
+
+    <div class="container">
+
+        <div class="body_container"></div>
+
+        <div class="center_container">
+                <div class="temp">
+                        <h2>{{ city_weather.temperature }}°</h2>
+                </div>
+
+                <div class="bottom_line">
+                        <div class="city">
+                                <h3>{{ city_weather.city }}</h3>
+                                <h3>&nbsp;-&nbsp;</h3>
+                        </div>
+
+                        <div class="descp">
+                                <h3>{{ city_weather.description }}</h3>
+                        </div>
+                </div>
+        </div>
+
+    </div>
+
+  </body>
+
+<!-- block end beginning -->
+</div>
+<!-- block end end -->
+</html>
